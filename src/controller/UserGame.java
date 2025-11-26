@@ -1,7 +1,7 @@
 package controller;
 
 import model.Grid;
-import solver.BacktrackingSolver;
+import Solver.BacktrackingSolver;
 
 public class UserGame {
 
