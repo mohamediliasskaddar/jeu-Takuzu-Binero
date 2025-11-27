@@ -1,4 +1,3 @@
-// src/main/java/model/Grid.java
 package model;
 
 import java.util.*;
@@ -7,6 +6,8 @@ public class Grid {
     private final int size;
     private final int[][] values;        // -1 = vide, 0 ou 1 = fixé ou rempli
     private final boolean[][] given;     // true si case donnée au départ
+    private List<Integer>[][] domains; // pour chaque case, domaine possible (0 ou 1)
+
 
     public Grid(int size) {
         this.size = size;
@@ -14,6 +15,19 @@ public class Grid {
         this.given = new boolean[size][size];
         for (int[] row : values) Arrays.fill(row, -1);
     }
+
+    public Grid(Grid other) {
+        this.size = other.size;
+        this.values = new int[size][size];
+        this.given = new boolean[size][size];
+
+        for (int i = 0; i < size; i++) {
+            System.arraycopy(other.values[i], 0, this.values[i], 0, size);
+            System.arraycopy(other.given[i], 0, this.given[i], 0, size);
+        }
+    }
+
+
 
     public int getSize() { return size; }
     public int get(int r, int c) { return values[r][c]; }
@@ -109,6 +123,61 @@ public class Grid {
                 g.given[i][j] = given[i][j];
             }
         return g;
+    }
+
+// 2. Initialiser les domaines
+    @SuppressWarnings("unchecked")
+    public void initDomains() {
+        domains = new List[size][size];
+        for (int r = 0; r < size; r++) {
+            for (int c = 0; c < size; c++) {
+                if (values[r][c] == -1) {
+                    domains[r][c] = new ArrayList<>(Arrays.asList(0,1));
+                } else {
+                    domains[r][c] = new ArrayList<>();
+                    domains[r][c].add(values[r][c]);
+                }
+            }
+        }
+    }
+
+// 3. Accéder au domaine d'une case
+    public List<Integer> getDomain(int r, int c) {
+        return domains[r][c];
+    }
+
+// 4. Forward Checking
+
+    public boolean forwardCheck(int r, int c, int val) {
+        values[r][c] = val;
+
+        for (int i = 0; i < size; i++) {
+            // pour la ligne
+            if (i != c && values[r][i] == -1) {
+                final int row = r;
+                final int col = i;
+                domains[row][col].removeIf(v -> !isValidPartialWith(row, col, v));
+                if (domains[row][col].isEmpty()) return false;
+            }
+
+            // pour la colonne
+            if (i != r && values[i][c] == -1) {
+                final int row = i;
+                final int col = c;
+                domains[row][col].removeIf(v -> !isValidPartialWith(row, col, v));
+                if (domains[row][col].isEmpty()) return false;
+            }
+        }
+        return true;
+    }
+
+
+    public boolean isValidPartialWith(int r, int c, int val) {
+        int old = values[r][c];
+        values[r][c] = val;
+        boolean ok = isValidPartial();
+        values[r][c] = old;
+        return ok;
     }
 
     @Override

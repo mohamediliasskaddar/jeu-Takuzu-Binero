@@ -1,7 +1,7 @@
 package controller;
 
 import model.Grid;
-import solver.BacktrackingSolver;
+import Solver.BacktrackingSolver;
 
 public class UserGame {
 
@@ -61,6 +61,8 @@ public class UserGame {
         Grid copy = grid.copy();
         return solver.solve(copy);
     }
+
+
     public String suggestMove() {
         Grid copy = grid.copy();
 

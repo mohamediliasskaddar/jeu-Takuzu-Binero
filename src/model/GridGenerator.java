@@ -1,16 +1,16 @@
 package model;
 
-import solver.BacktrackingSolver;
+import Solver.BacktrackingSolver;
 import java.util.*;
-
+/**
+ * difficulty = pourcentage de cases à retirer :
+ * 0.40 = débutant
+ * 0.55 = intermédiaire
+ * 0.70 = expert
+ */
 public class GridGenerator {
 
-    /**
-     * difficulty = pourcentage de cases à retirer :
-     * 0.40 = débutant
-     * 0.55 = intermédiaire
-     * 0.70 = expert
-     */
+
     public static Grid generate(int size, double difficulty) {
 
         BacktrackingSolver solver = new BacktrackingSolver();
