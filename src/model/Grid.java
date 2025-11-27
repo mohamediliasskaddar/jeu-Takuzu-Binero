@@ -125,14 +125,7 @@ public class Grid {
         return g;
     }
 
-
-
-
-
-
-    // ------------------------
 // 2. Initialiser les domaines
-// ------------------------
     @SuppressWarnings("unchecked")
     public void initDomains() {
         domains = new List[size][size];
@@ -148,16 +141,13 @@ public class Grid {
         }
     }
 
-    // ------------------------
 // 3. Accéder au domaine d'une case
-// ------------------------
     public List<Integer> getDomain(int r, int c) {
         return domains[r][c];
     }
 
-    // ------------------------
 // 4. Forward Checking
-// ------------------------
+
     public boolean forwardCheck(int r, int c, int val) {
         values[r][c] = val;
 
@@ -189,14 +179,6 @@ public class Grid {
         values[r][c] = old;
         return ok;
     }
-
-
-
-
-
-
-
-
 
     @Override
     public String toString() {

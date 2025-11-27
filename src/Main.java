@@ -143,9 +143,13 @@ public class Main {
 
         // Exemple de grilles (vide ou partiellement remplies)
         Grid[] grids = {
-//                new Grid(6),
-//                new Grid(8),
-                new Grid(11)
+                new Grid(3),
+                new Grid(4),
+                new Grid(5),
+                new Grid(6),
+                new Grid(7),
+                new Grid(8),
+                new Grid(9)
         };
 
         BacktrackingSolver solver = new BacktrackingSolver();
@@ -166,9 +170,9 @@ public class Main {
             long start = System.currentTimeMillis();
             Grid gCopy = g.copy();
             boolean ok = solver.solveOptimized(gCopy);
-            if (ok) {
-                System.out.println("Solution :\n" + gCopy);
-            }
+//            if (ok) {
+//                System.out.println("Solution :\n" + gCopy);
+//            }
 
             long end = System.currentTimeMillis();
 
@@ -176,9 +180,9 @@ public class Main {
                     " -> " + (ok ? "Résolue" : "Impossible") +
                     " | Temps : " + (end - start) + " ms");
 
-            if (ok) {
-                System.out.println("Solution :\n" + g);
-            }
+//            if (ok) {
+//                System.out.println("Solution :\n" + g);
+//            }
         }
     }
 }

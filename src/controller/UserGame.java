@@ -61,6 +61,8 @@ public class UserGame {
         Grid copy = grid.copy();
         return solver.solve(copy);
     }
+
+
     public String suggestMove() {
         Grid copy = grid.copy();
 
