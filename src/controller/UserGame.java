@@ -17,7 +17,7 @@ public class UserGame {
 
         // 1. Empêcher modification des cases données
         if (grid.isGiven(r, c)) {
-            return "❌ Vous ne pouvez pas modifier une case fixe.";
+            return " Vous ne pouvez pas modifier une case fixe.";
         }
 
         // 2. Jouer le coup
@@ -25,7 +25,7 @@ public class UserGame {
 
         // 3. Vérifier si valide partiellement
         if (!grid.isValidPartial()) {
-            return "⚠️ Coup invalide : règle Binairo violée.";
+            return " Coup invalide : règle Binairo violée.";
         }
 
         // 4. Si la grille est complète → vérifions si elle a une solution
@@ -34,9 +34,9 @@ public class UserGame {
             boolean solvable = solver.solve(copy);
 
             if (solvable) {
-                return "🎉 Félicitations ! Votre grille est correcte !";
+                return " Félicitations ! Votre grille est correcte !";
             } else {
-                return "❌ Cette grille n'a aucune solution.";
+                return " Cette grille n'a aucune solution.";
             }
         }
 
@@ -48,9 +48,9 @@ public class UserGame {
         Grid copy = grid.copy();
         boolean ok = solver.solve(copy);
 
-        if (!ok) return "❌ Cette grille ne peut pas être résolue.";
+        if (!ok) return " Cette grille ne peut pas être résolue.";
 
-        return "🔍 Solution trouvée :\n" + copy;
+        return " Solution trouvée :\n" + copy;
     }
 
     public Grid getGrid() {
@@ -67,7 +67,7 @@ public class UserGame {
         Grid copy = grid.copy();
 
         if (!solver.solve(copy)) {
-            return "❌ Impossible de trouver une solution à partir de cette grille.";
+            return " Impossible de trouver une solution à partir de cette grille.";
         }
 
         int size = grid.getSize();
@@ -75,12 +75,12 @@ public class UserGame {
             for (int c = 0; c < size; c++) {
                 if (grid.get(r, c) == -1 && !grid.isGiven(r, c)) {
                     int correctValue = copy.get(r, c);
-                    return "💡 Suggestion : mettre " + correctValue + " à la position (" + r + ", " + c + ")";
+                    return " Suggestion : mettre " + correctValue + " à la position (" + r + ", " + c + ")";
                 }
             }
         }
 
-        return "🎉 La grille est déjà complète !";
+        return " La grille est déjà complète !";
     }
 
 }
