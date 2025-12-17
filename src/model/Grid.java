@@ -58,7 +58,7 @@ public class Grid {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (values[i][j] == -1) continue;
-                // ligne : je dois lancer une erreur claire : comme meme nombre est juxtaposé plus  que 2 fosi
+                // ligne  je dois lancr une erreur claire :  juxtaposé plus  que 2 fosi
                 if (j >= 2 && values[i][j] == values[i][j-1] && values[i][j] == values[i][j-2]) return false;
                 // colonne : meme remaue ici
                 if (i >= 2 && values[i][j] == values[i-1][j] && values[i][j] == values[i-2][j]) return false;
@@ -146,8 +146,7 @@ public class Grid {
         return domains[r][c];
     }
 
-// 4. Forward Checking
-
+// 4. Forward Checking: anrej3 leha
     public boolean forwardCheck(int r, int c, int val) {
         values[r][c] = val;
 

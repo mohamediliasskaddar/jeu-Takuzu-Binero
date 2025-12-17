@@ -4,7 +4,7 @@ import model.Grid;
 
 public class SolverUtils {
 
-    // Trouver la première case vide (-1)
+    // Trouver la case vide (-1),
     public static Position findEmpty(Grid grid) {
         int size = grid.getSize();
         for (int r = 0; r < size; r++) {

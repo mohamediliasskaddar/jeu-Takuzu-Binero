@@ -9,16 +9,17 @@ import java.util.Queue;
 
 public class AC3 {
 
-    // Classe Arc statique
+    // Classe Arc statique : Représente une contrainte binaire entre deux cases du Sudoku
     static class Arc {
-        int r1, c1, r2, c2;
+        int r1, c1, r2, c2;// cood
         Arc(int r1, int c1, int r2, int c2) {
             this.r1 = r1; this.c1 = c1; this.r2 = r2; this.c2 = c2;
         }
     }
 
     public boolean runAC3(Grid grid) {
-        Queue<Arc> queue = new LinkedList<>();
+
+        Queue<Arc> queue = new LinkedList<>();//File d'attente tous les arcs à traiter
         int n = grid.getSize();
 
         // Ajouter tous les arcs ligne & colonne
@@ -51,7 +52,7 @@ public class AC3 {
         return true;
     }
 
-    // Revise : supprime les valeurs impossibles du domaine
+    // Revise : supprime les valeurs impossibles du domaine de chaque
     private boolean revise(Grid grid, Arc arc) {
         int r = arc.r1, c = arc.c1;
         List<Integer> domain = grid.getDomain(r, c);
@@ -60,7 +61,7 @@ public class AC3 {
 
         while (it.hasNext()) {
             int val = it.next();
-            if (!grid.isValidPartialWith(r, c, val)) { // doit être public
+            if (!grid.isValidPartialWith(r, c, val)) {// Si la valeur ne peut pas être placée* sans violer les règles du Sudoku,
                 it.remove();
                 revised = true;
             }

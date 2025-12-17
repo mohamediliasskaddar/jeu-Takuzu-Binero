@@ -37,7 +37,7 @@ public class BacktrackingSolver {
 
         int r = pos.row, c = pos.col;
 
-        List<Integer> valuesToTry = LCVHeuristic.getLCVValues(grid, r, c);
+        List<Integer> valuesToTry = LCVHeuristic.getLCVValues(grid, r, c);// value to test
 
         for (int val : valuesToTry) {
             grid.set(r, c, val);
